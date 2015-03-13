@@ -1,0 +1,26 @@
+dump APIs for hash table:
+
+1. dumpIPHashTable keyType, subKeyType, vrf, ipv4, *ipv6
+
+Usage:
+keyType = 0 for IPv4 and 2 for IPv6
+subkeyType : arp =1, local host = 2, vrrp = 3,ipv6 neighbor = 4 
+vrf: 0 for base instance and so on
+ipv4: address in hexadecimal format
+ipv6: "2001::1" as example, don't forget to use the double quotes
+
+If No arguments given: dumps IPv4 entries
+if only key is given: dups info related to key
+If both key and subkeyType is given: subset of both (key is needed when putting subKeyType else error)
+info is based on the arguments.
+
+
+2.  getIpHashBucket(ipv4 address in hexadecimal, vrf, 1)
+-> Info related to this address
+
+3.  getIpv6HashBucket(1st 32bit address in hex, 2nd 32 bit address in hex, 3rd 32 bit address in hex, 4th 32 bit address in hex, vrf, 1)
+--> example : 2001::1
+	getIpv6HashBucket 0x20010000,0,0,0x00000001,vrf,1 
+	
+4. dumpL3HashTable
+--> dumps whole hash table 
